@@ -36,3 +36,20 @@ export class AnimalsService {
     return saved;
   }
 }
+
+async list(opts: {page:number; limit:number; search:string; species?:string; status?:string}) {
+  const qb = this.repo.createQueryBuilder('a')
+    .leftJoinAndSelect('a.qrCodes', 'q')
+    .orderBy('a.createdAt', 'DESC')
+    .offset((opts.page - 1) * opts.limit)
+    .limit(opts.limit);
+
+  if (opts.search) {
+    qb.andWhere('(a.name ILIKE :s OR q.code ILIKE :s)', { s: `%${opts.search}%` });
+  }
+  if (opts.species) qb.andWhere('a.species = :species', { species: opts.species });
+  if (opts.status) qb.andWhere('a.status = :status', { status: opts.status });
+
+  const [items, total] = await qb.getManyAndCount();
+  return { items, total, page: opts.page, pages: Math.ceil(total / opts.limit) };
+}
