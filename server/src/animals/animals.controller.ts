@@ -4,6 +4,20 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { v4 as uuid } from 'uuid';
 import { AnimalsService } from './animals.service';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Animal } from './animal.entity';
+import { AnimalsService } from './animals.service';
+import { AnimalsController } from './animals.controller';
+import { QrCode } from '../qr-codes/qr-code.entity';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([Animal, QrCode])],
+  controllers: [AnimalsController],
+  providers: [AnimalsService],
+  exports: [AnimalsService],
+})
+export class AnimalsModule {}
 
 @Get()
 list(
