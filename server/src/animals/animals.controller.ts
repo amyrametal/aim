@@ -34,3 +34,8 @@ export class AnimalsController {
     return this.svc.create(dto, pic?.filename, code);
   }
 }
+
+@Get('public/:nanoid')
+async publicOne(@Param('nanoid') nanoid: string) {
+  return this.svc.findPublic(nanoid);
+}
