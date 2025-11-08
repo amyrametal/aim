@@ -53,3 +53,11 @@ async list(opts: {page:number; limit:number; search:string; species?:string; sta
   const [items, total] = await qb.getManyAndCount();
   return { items, total, page: opts.page, pages: Math.ceil(total / opts.limit) };
 }
+
+async findPublic(nanoid: string) {
+  return this.repo.findOneOrFail({
+    where: { nanoid },
+    select: ['id', 'nanoid', 'name', 'species', 'ageMonths', 'gender', 'status', 'pictureUrl', 'lat', 'lng', 'accuracy'],
+    relations: ['qrCodes'],
+  });
+}
