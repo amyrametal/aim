@@ -25,11 +25,11 @@ export class Animal {
   @Column({ nullable: true })
   gender: string;
 
-  @Column({ nullable: true })
-  lat: number;
+@Column({ type: 'double precision', nullable: true })
+lat: number;
 
-  @Column({ nullable: true })
-  lng: number;
+@Column({ type: 'double precision', nullable: true })
+lng: number;
 
   @Column({ nullable: true })
   accuracy: number;
