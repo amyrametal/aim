@@ -24,14 +24,14 @@ export class Animal {
 
   @Column({ nullable: true })
   gender: string;
-
-@Column({ type: 'double precision', nullable: true })
-lat: number;
-
-@Column({ type: 'double precision', nullable: true })
-lng: number;
-
-  @Column({ nullable: true })
+  
+  @Column({ type: 'double precision', nullable: true })
+  lat: number;
+  
+  @Column({ type: 'double precision', nullable: true })
+  lng: number;
+  
+  @Column({ type: 'double precision', nullable: true })
   accuracy: number;
 
   @Column({ default: 'active' })
