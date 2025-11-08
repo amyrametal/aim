@@ -5,6 +5,17 @@ import { extname } from 'path';
 import { v4 as uuid } from 'uuid';
 import { AnimalsService } from './animals.service';
 
+@Get()
+list(
+  @Query('page')  page = 1,
+  @Query('limit') limit = 20,
+  @Query('search') search = '',
+  @Query('species') species?: 'dog'|'cow',
+  @Query('status') status?: string,
+) {
+  return this.svc.list({ page: +page, limit: +limit, search, species, status });
+}
+
 @Controller('animals')
 export class AnimalsController {
   constructor(private readonly svc: AnimalsService) {}
