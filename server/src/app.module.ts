@@ -8,6 +8,7 @@ import { QrCode } from './qr-codes/qr-code.entity';
 import { Vaccine } from './vaccines/vaccine.entity';
 import { AnimalsModule } from './animals/animals.module';
 import { QrCodesModule } from './qr-codes/qr-codes.module';
+import { VaccinesModule } from './vaccines/vaccines.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { QrCodesModule } from './qr-codes/qr-codes.module';
     }),
     AnimalsModule,
     QrCodesModule,
+    VaccinesModule,
   ],
 })
 export class AppModule {}
