@@ -4,6 +4,13 @@ import { Repository } from 'typeorm';
 import { Animal } from './animal.entity';
 import { QrCode } from '../qr-codes/qr-code.entity';
 import { nanoid } from 'nanoid';
+import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
+
+@CreateDateColumn()
+createdAt: Date;
+
+@UpdateDateColumn()
+updatedAt: Date;
 
 @Injectable()
 export class AnimalsService {
